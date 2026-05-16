@@ -27,8 +27,8 @@ export default function Home() {
           transition={{ delay: 0.1, duration: 0.3 }}
         >
           <RevealText
-            text="Elagkian Rajendram"
-            overlayColor="#ef4444"
+            text="ELAGKIAN RAJENDRAM"
+            overlayColor="#000000"
             fontSize="clamp(28px, 4vw, 56px)"
             letterDelay={0.06}
             overlayDelay={0.04}

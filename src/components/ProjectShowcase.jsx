@@ -1,5 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { ArrowUpRight } from 'lucide-react'
+import openfoodImg from '../assets/openfood.png'
+import midiImg from '../assets/midi.png'
+import unoImg from '../assets/uno.png'
+import scannerImg from '../assets/3D-Scanner.png'
+import letuscookImg from '../assets/LetusCook.png'
 import './ProjectShowcase.css'
 
 const projects = [
@@ -8,21 +13,21 @@ const projects = [
     description: 'Data science pipeline combining 4M+ OpenFoodFacts products with WHO and World Bank health datasets to uncover global nutritional trends and correlations.',
     year: 'Fall 2025',
     link: 'https://github.com/elagkian/openfoodfacts-analysis',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    image: openfoodImg,
   },
   {
     title: 'Iroh MIDI/OSC',
     description: 'Peer-to-peer music collaboration tool in Rust that routes MIDI and OSC messages over the internet via the Iroh protocol for low-latency remote jamming sessions.',
     year: 'Fall 2025',
     link: 'https://github.com/elagkian/iroh-midi-osc',
-    image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+    image: midiImg,
   },
   {
     title: 'Tremuno',
     description: 'Cheat-proof peer-to-peer Uno for Android built on the Tremola Bluetooth mesh network, using Mental Poker cryptographic protocols to guarantee fair play without a central server.',
     year: 'Spring 2025',
     link: 'https://github.com/thechnet/tremuno',
-    image: 'https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&w=800&q=80',
+    image: unoImg,
   },
   {
     title: 'Linux Kernel Driver',
@@ -36,14 +41,14 @@ const projects = [
     description: 'Arduino-controlled 3D scanner using stepper motors and time-of-flight distance sensors to capture object geometry and produce reconstructed point-cloud models.',
     year: 'Fall 2024',
     link: 'https://github.com/thechnet/rl3ds',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+    image: scannerImg,
   },
   {
     title: 'LetUsCook!',
     description: 'Real-time multiplayer Java game with a client-server architecture, featuring synchronised game state and a fast-paced co-op cooking loop.',
     year: 'Spring 2024',
     link: 'https://github.com/cookkings/letuscook',
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80',
+    image: letuscookImg,
   },
 ]
 

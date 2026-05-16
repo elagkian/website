@@ -1,0 +1,239 @@
+@property --p {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.about {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  /* em base so all child em values scale consistently */
+  font-size: max(calc(min(600px, 80vh) * 0.03), 10px);
+  background: #05060f;
+  background-image: linear-gradient(0deg, rgba(216,236,248,.06), rgba(152,192,239,.06));
+}
+
+/* ── Back button ── */
+.about__back {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  padding: 0;
+  transition: color 0.2s;
+}
+.about__back:hover {
+  color: #ffffff;
+}
+
+/* ── Particle canvas ── */
+.about__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  animation: about-load 0.4s ease-in-out forwards;
+}
+
+/* ── Spotlight beams ── */
+.about__spotlights {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.about__beam {
+  border-radius: 0 0 50% 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 0;
+  width: 30em;
+  /* tall enough to reach bottom of viewport */
+  height: 100vh;
+  background-image: conic-gradient(
+    from 0deg at 50% -5%,
+    transparent 45%,
+    rgba(124, 145, 182, .3) 49%,
+    rgba(124, 145, 182, .5) 50%,
+    rgba(124, 145, 182, .3) 51%,
+    transparent 55%
+  );
+  transform-origin: 50% 0;
+  filter: blur(15px) opacity(0.5);
+  opacity: 0;
+}
+
+.about__beam--1 {
+  animation: about-load 2s ease-in-out forwards,
+             about-spotlight 17s ease-in-out infinite;
+}
+.about__beam--2 {
+  animation: about-load 2s ease-in-out forwards,
+             about-spotlight 14s ease-in-out infinite;
+}
+/* center beam: straight down, brighter, reaches bottom */
+.about__beam--center {
+  width: 20em;
+  filter: blur(8px) opacity(0.75);
+  animation: about-load 2s ease-in-out forwards,
+             about-spotlight-center 21s ease-in-out infinite reverse;
+}
+
+/* ── Accent lines ── */
+.about__accents {
+  pointer-events: none;
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 42em;
+}
+
+.about__hline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(186, 215, 247, .18), transparent);
+  opacity: 0;
+  transform: scaleX(0);
+  animation: about-accentload 2s ease-out 2.4s forwards;
+}
+
+.about__vline {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(186, 215, 247, .18);
+  opacity: 0;
+  transform: scaleY(0);
+  animation: about-accentload 2s ease-out 2s forwards;
+}
+
+/* ── Hero title ── */
+.about__hero {
+  position: absolute;
+  top: 18%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2em;
+  opacity: 0;
+  animation: about-load 2s ease-in-out 0.6s forwards;
+}
+
+/* ── Gold mode toggle ── */
+.about__midspot {
+  width: 1.8em;
+  height: 1.8em;
+  border-radius: 50%;
+  border: none;
+  background: #000;
+  box-shadow: 0 0 1em 0 #98c0ef;
+  cursor: pointer;
+  transition: box-shadow 0.8s ease-in-out;
+  flex-shrink: 0;
+}
+
+.about__midspot:hover {
+  box-shadow: -0.3em 0.1em 0.2em 0 #d8bd10;
+}
+
+.about__midspot--gold {
+  box-shadow: 0 0 1em 0 #d8bd10;
+}
+
+.about__midspot--gold:hover {
+  box-shadow: -0.3em 0.1em 0.2em 0 #98c0ef;
+}
+
+.about__title {
+  font-size: 5em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  background:
+    radial-gradient(2em 2em at 50% 50%,
+      transparent calc(var(--p) - 2em),
+      #fff calc(var(--p) - 1em),
+      #fff calc(var(--p) - 0.4em),
+      transparent var(--p)
+    ),
+    linear-gradient(0deg, #bad1f1 30%, #9dc3f7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 16px rgba(174, 207, 242, .24);
+  animation: about-pulse 10s linear 1.2s infinite;
+}
+
+.about__title--glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 5em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  background:
+    radial-gradient(2em 2em at 50% 50%,
+      transparent calc(var(--p) - 2em),
+      transparent calc(var(--p) - 1em),
+      #fff calc(var(--p) - 1em),
+      #fff calc(var(--p) - 0.4em),
+      transparent calc(var(--p) - 0.4em),
+      transparent var(--p)
+    );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: blur(16px) opacity(0.4);
+  animation: about-pulse 10s linear 1.2s infinite;
+  pointer-events: none;
+}
+
+/* ── Keyframes ── */
+@keyframes about-load {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes about-spotlight {
+  0%   { transform: rotateZ(0deg)  scale(1);   filter: blur(15px) opacity(0.5); }
+  20%  { transform: rotateZ(-1deg) scale(1.2); filter: blur(16px) opacity(0.6); }
+  40%  { transform: rotateZ(2deg)  scale(1.3); filter: blur(14px) opacity(0.4); }
+  60%  { transform: rotateZ(-2deg) scale(1.2); filter: blur(15px) opacity(0.6); }
+  80%  { transform: rotateZ(1deg)  scale(1.1); filter: blur(13px) opacity(0.4); }
+  100% { transform: rotateZ(0deg)  scale(1);   filter: blur(15px) opacity(0.5); }
+}
+
+/* center beam barely moves — stays vertical to reach bottom */
+@keyframes about-spotlight-center {
+  0%   { transform: rotateZ(0deg);    filter: blur(8px) opacity(0.75); }
+  33%  { transform: rotateZ(0.5deg);  filter: blur(7px) opacity(0.85); }
+  66%  { transform: rotateZ(-0.5deg); filter: blur(9px) opacity(0.7);  }
+  100% { transform: rotateZ(0deg);    filter: blur(8px) opacity(0.75); }
+}
+
+@keyframes about-accentload {
+  0%   { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes about-pulse {
+  0%   { --p: 0%;   }
+  50%  { --p: 300%; }
+  100% { --p: 300%; }
+}
