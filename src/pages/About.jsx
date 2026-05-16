@@ -73,7 +73,7 @@ export default function About() {
 
   return (
     <motion.div
-      className="about"
+      className={`about${isGoldMode ? ' about--gold' : ''}`}
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 40 }}
@@ -87,17 +87,6 @@ export default function About() {
         <div className="about__beam about__beam--1" />
         <div className="about__beam about__beam--2" />
         <div className="about__beam about__beam--center" />
-      </div>
-
-      {/* Accent lines */}
-      <div className="about__accents">
-        {[6, 11, 16, 24, 29].map((top, i) => (
-          <div key={i} className="about__hline" style={{ top: `${top}em` }} />
-        ))}
-        <div className="about__vline" style={{ left: '24em' }} />
-        <div className="about__vline" style={{ left: '34em' }} />
-        <div className="about__vline" style={{ right: '24em' }} />
-        <div className="about__vline" style={{ right: '34em' }} />
       </div>
 
       {/* Back button */}
