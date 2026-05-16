@@ -1,0 +1,44 @@
+.home {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0c;
+}
+
+.home__bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+.home__bg canvas:last-child {
+  z-index: 1;
+}
+
+.home__content {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+}
+
+/* Name — upper third */
+.home__name {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Orbital nav — center at 2/3 down */
+.home__orbital {
+  position: absolute;
+  top: 66.67%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

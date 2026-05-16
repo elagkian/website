@@ -1,0 +1,47 @@
+.reveal-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.reveal-text__space {
+  display: inline-block;
+  width: 0.35em;
+}
+
+.reveal-text__letter {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* White base — absolute so it overlays the image span */
+.reveal-text__base {
+  position: absolute;
+  inset: 0;
+  color: #ffffff;
+}
+
+/* Image fill — in normal flow to size the parent */
+.reveal-text__image {
+  display: block;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Color sweep — absolute, non-interactive */
+.reveal-text__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}

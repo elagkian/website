@@ -1,35 +1,55 @@
-import DarkVeil from './DarkVeil'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import { FolderGit2, FileText, User } from 'lucide-react'
+import { LimelightNav } from './components/LimelightNav'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
+import CV from './pages/CV'
+import About from './pages/About'
 
-function App() {
+const NAV_ROUTES = ['/projects', '/cv', '/about']
+
+function AppShell() {
+  const location = useLocation()
+  const navigate  = useNavigate()
+
+  const activeIndex = NAV_ROUTES.indexOf(location.pathname)
+
+  const navItems = [
+    { id: 'projects', icon: <FolderGit2 />, label: 'Projects', onClick: () => navigate('/projects') },
+    { id: 'cv',       icon: <FileText />,   label: 'CV',        onClick: () => navigate('/cv')       },
+    { id: 'about',    icon: <User />,        label: 'About Me',  onClick: () => navigate('/about')    },
+  ]
+
   return (
-    <div style={{ position: 'relative', minHeight: '100vh' }}>
-      
+    <>
+      {/* Global centered dock */}
       <div style={{
         position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 0,
+        top: 24,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 100,
       }}>
-        <DarkVeil
-          hueShift={35}
-          noiseIntensity={0.01}
-          scanlineIntensity={0.14}
-          speed={1.7}
-          scanlineFrequency={1.7}
-          warpAmount={0.6}
-        />
+        <LimelightNav items={navItems} activeIndex={activeIndex} />
       </div>
 
-      <div style={{ position: 'relative', zIndex: 1, padding: '40px' }}>
-        <h1 style={{ color: '#fff', fontSize: '24px', fontWeight: 'bold' }}>
-          Elagkian Rajendram
-        </h1>
-      </div>
-
-    </div>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/"         element={<Home />}     />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/cv"       element={<CV />}       />
+          <Route path="/about"    element={<About />}    />
+        </Routes>
+      </AnimatePresence>
+    </>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
+  )
+}
